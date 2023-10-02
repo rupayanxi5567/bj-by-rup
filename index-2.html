@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Black Jack</title>
+    <style>
+      body {
+        background-color: darkgreen;
+
+        text-align: center;
+
+        color: white;
+      }
+
+      #round {
+        color: goldenrod;
+      }
+
+      #gameBTN {
+        color: #016f32;
+        width: 150px;
+        background-color: goldenrod;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+      }
+
+      #newGameBTN {
+        color: #016f32;
+        width: 150px;
+        background-color: rgb(223, 123, 29);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+      }
+
+      #outGame {
+        color: red;
+      }
+
+      #winGame {
+        color: lime;
+      }
+
+      #newChance {
+        color: skyblue;
+      }
+
+      #container {
+        border: 3px solid red;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      #startings {
+        color: rgb(161, 124, 161);
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="styling" id="headingChange">Black Jack by Rupayan</h1>
+
+    <h2 class="styling" id="startings">Wanna Play a Round?</h2>
+    <h2 class="styling" id="round">Not played yet</h2>
+
+    <p id="card" class="styling">Cards:</p>
+
+    <p id="total" class="styling">Sum:</p>
+
+    <button class="styling" id="gameBTN" onclick="startGame()">
+      Start Game
+    </button>
+
+    <div id="container">
+      <h2 style="color: black; font-weight: 900">Rules</h2>
+
+      <p id="newChance">
+        [ If Sum is less than 20, then you get a chane to draw new card ]
+      </p>
+
+      <p id="winGame">
+        [ If Sum is less equal to 21, then Kudos, you have the BJ ]
+      </p>
+
+      <p id="outGame">
+        [ If the sum is greater than 21, then You are out of the game ]
+      </p>
+    </div>
+  </body>
+
+  <script>
+    let min = 2;
+    let max = 21;
+
+    let card1 = Math.floor(Math.random() * (max - min + 1) + min);
+
+    let card2 = Math.floor(Math.random() * (max - min + 1) + min);
+
+    let cards = [card1, card2];
+
+    let tot = card1 + card2;
+
+    let hasJack = false;
+
+    let isAlive = true;
+
+    let message = "";
+
+    function startGame() {
+      document.getElementById("total").textContent = `The Sum is: ${tot}`;
+
+      document.getElementById(
+        "card"
+      ).textContent = `The Cards are: ${cards[0]} and ${cards[1]}`;
+
+      if (tot <= 20) {
+        message = "Do you want to draw new card?";
+      } else if (tot === 21) {
+        message = "Kudos, you have the BJ"; //please don't take it wrong lol
+        hasJack = true;
+      } else {
+        message = "You are out of the game";
+        isAlive = false;
+      }
+
+      let round = (document.getElementById("round").textContent = message);
+    }
+
+    function changingFNC() {
+      document.getElementById("headingChange").innerHTML = "Rup's Black Jack ";
+    }
+
+    setInterval(changingFNC, 2000);
+
+    function changeRound() {
+      document.getElementById("startings").innerHTML = "Try now!";
+    }
+
+    setInterval(changeRound, 3000);
+
+    function changePlay() {
+      document.getElementById("round").innerHTML = "Roll your card";
+    }
+
+    setInterval(changePlay, 4000);
+
+    function changeBTN() {
+      document.getElementById("gameBTN").innerHTML = "Click here";
+    }
+
+    setInterval(changeBTN, 2000);
+  </script>
+</html>
